@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import pandas as pd
 from sklearn.metrics import r2_score
+import dill 
 
 from sklearn.model_selection import GridSearchCV
 
@@ -18,7 +19,6 @@ def save_object(file_path, obj):
         file_path (str): The path to the file where the object will be saved.
         obj: The Python object to be saved.
     """
-    import dill 
 
     try:
         dir_path = os.path.dirname(file_path)
@@ -58,3 +58,21 @@ def evalute_models(x_train, y_train, x_test, y_test, models, param):
 
     except Exception as e:
         raise CustomException(e, sys)    
+    
+def load_object(file_path):
+    """
+    Load a Python object from a file using pickle.
+
+    Args:
+        file_path (str): The path to the file from which the object will be loaded.
+
+    Returns:
+        The loaded Python object.
+    """
+
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return dill.load(file_obj)
+
+    except Exception as e:
+        raise CustomException(e, sys)
