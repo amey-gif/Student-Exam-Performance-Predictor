@@ -8,6 +8,11 @@ __pycache__/
 
 # Distribution / packaging
 artifacts/
+*.pkl
+*.joblib
+*.log
+__pycache__/
+venv/
 .env
 .venv
 .Python
